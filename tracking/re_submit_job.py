@@ -39,42 +39,36 @@ if __name__ == "__main__":
     # from itertools import product
 
     # sim_id = 0
-    sim_id = ['retry8','retry369']
+    sim_id = 0
 
     reserve_factor = 0.0
 
-    wind_pmax_list = [50,500]
+    wind_pmax_list = list(range(50,550,50))
     
     # pmax_ratio: battery_power_pmax/wind_pmax
-    # pmax_ratio_list = [r/10 for r in range(2,12,2)]
-    battery_pmax = [20,200]
+    pmax_ratio_list = [r/10 for r in range(2,12,2)]
+
     # battery size in hour
     battery_size = 4
 
-    n_scenario_list = [3,3]
+    n_scenario_list = [3]
     participation_modes = ["Bid","SelfSchedule"]
 
-    # spec_comb_product = product(wind_pmax_list, pmax_ratio_list, n_scenario_list, participation_modes)
+    spec_comb_product = product(wind_pmax_list, pmax_ratio_list, n_scenario_list, participation_modes)
 
-    # print('sim_id', len(sim_id))
-    # print('wind_pmax_list', len(wind_pmax_list))
-    # print('battery_pmax', len(battery_pmax))
-    # print('n_scenario_list', len(n_scenario_list))
-    # print('participation_modes', len(participation_modes))
+    for wind_pmax, p_max_ratio, n_scenario, pm in spec_comb_product:
 
-    for sim_id_, wind_pmax_, battery_pmax_, n_scenario_, pm in zip(sim_id,wind_pmax_list,battery_pmax,n_scenario_list,participation_modes):
-
-        # battery_pmax = wind_pmax * p_max_ratio
-        battery_energy_capacity_ = battery_pmax_ * battery_size
+        battery_pmax = wind_pmax * p_max_ratio
+        battery_energy_capacity = battery_pmax * battery_size
 
         submit_job(
-            sim_id=sim_id_,
-            wind_pmax=wind_pmax_,
-            battery_energy_capacity=battery_energy_capacity_*1.0,
-            battery_pmax=battery_pmax_*1.0,
-            n_scenario=n_scenario_,
+            sim_id=sim_id,
+            wind_pmax=wind_pmax,
+            battery_energy_capacity=battery_energy_capacity*1.0,
+            battery_pmax=battery_pmax*1.0,
+            n_scenario=n_scenario,
             participation_mode=pm,
             reserve_factor=reserve_factor,
             )
 
-        # sim_id += 1
+        sim_id += 1
