@@ -39,34 +39,28 @@ if __name__ == "__main__":
     # from itertools import product
 
     # sim_id = 0
-    sim_id = [229,230,239,241,246,249,250,251,253,257,260,261,264,265,271,272,273,275,277,278,280,\
-    281,283,286,287,288,289,291,292,293,295,296,297,298,300,301,302,313,314,356,382]
+    sim_id = ['retry8','retry369']
 
     reserve_factor = 0.0
 
-    wind_pmax_list = [300,300,300,350,350,350,350,350,350,350,350,350,350,350,350,350,350,350,350,350,400,400,400,400,400,400,\
-    400,400,400,400,400,400,400,400,400,400,400,400,400,450,500]
+    wind_pmax_list = [50,500]
     
     # pmax_ratio: battery_power_pmax/wind_pmax
     # pmax_ratio_list = [r/10 for r in range(2,12,2)]
-    battery_pmax = [240,240,300,70,70,140,140,140,140,210,210,210,280,280,280,350,350,350,350,350,80,80,80,80,80,160,160,160,160,160,160,\
-    240,240,240,240,240,240,400,400,450,300]
+    battery_pmax = [20,200]
     # battery size in hour
     battery_size = 4
 
-    n_scenario_list = [8,10,10,3,10,3,5,5,8,3,8,8,3,3,10,3,3,5,8,10,3,3,5,10,10,3,3,5,8,8,10,3,3,5,8,8,10,3,5,8,10]
-    participation_modes = ["SelfSchedule","Bid","SelfSchedule","SelfSchedule","Bid","SelfSchedule","Bid","SelfSchedule","SelfSchedule","SelfSchedule",\
-    "Bid","SelfSchedule","Bid","SelfSchedule","SelfSchedule","Bid","SelfSchedule","SelfSchedule","SelfSchedule","Bid","Bid","SelfSchedule","SelfSchedule",\
-    "Bid","SelfSchedule","Bid","SelfSchedule","SelfSchedule","Bid","SelfSchedule","SelfSchedule","Bid","SelfSchedule","Bid","Bid","SelfSchedule","Bid",\
-    "SelfSchedule","Bid","Bid","Bid"]
+    n_scenario_list = [3,3]
+    participation_modes = ["Bid","SelfSchedule"]
 
     # spec_comb_product = product(wind_pmax_list, pmax_ratio_list, n_scenario_list, participation_modes)
 
-    print('sim_id', len(sim_id))
-    print('wind_pmax_list', len(wind_pmax_list))
-    print('battery_pmax', len(battery_pmax))
-    print('n_scenario_list', len(n_scenario_list))
-    print('participation_modes', len(participation_modes))
+    # print('sim_id', len(sim_id))
+    # print('wind_pmax_list', len(wind_pmax_list))
+    # print('battery_pmax', len(battery_pmax))
+    # print('n_scenario_list', len(n_scenario_list))
+    # print('participation_modes', len(participation_modes))
 
     for sim_id_, wind_pmax_, battery_pmax_, n_scenario_, pm in zip(sim_id,wind_pmax_list,battery_pmax,n_scenario_list,participation_modes):
 
